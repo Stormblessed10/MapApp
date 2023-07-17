@@ -1,0 +1,5 @@
+a.logo:link, a.logo:visited {
+    font-size: 4rem;
+    color: var(--color-font-primary);
+    text-decoration: none;
+}
