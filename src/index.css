@@ -1,7 +1,7 @@
 :root {
     --color-primary: #00c46a;
     --color-secondary: #d6dee0;
-    --color-tertiary: #292828;
+    --color-tertiary: #2d3439;
 }
 
 * {
@@ -19,7 +19,12 @@ body {
     font-family: sans-serif;
 }
 
-.btn-link:link, .btn-link:visited {
+button {
+    cursor: pointer;
+    border: none;
+}
+
+.btn, .btn:link, .btn:visited {
     font-size: 1.8rem;
     text-transform: uppercase;
     font-weight: 500;

@@ -8,7 +8,7 @@ export default function Homepage() {
         <section>
             <h1>Traveling around the world? <br/> MapApp will help you</h1>
             <h2>The application allows you to leave notes about cities so that you can remember your great (imaginary) travels.</h2>
-            <Link to="app" className="btn-link">Start</Link>
+            <Link to="app" className="btn">Start</Link>
         </section>
     </main>
 }
