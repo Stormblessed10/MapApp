@@ -1,0 +1,22 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+}
+
+.nav ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+}
+
+.nav ul a:link, a:visited { 
+    color: var(--color-secondary);
+    font-weight: 500;
+    font-size: 2rem;
+    transition: all 0.5s;
+    text-decoration: none;
+    text-transform: uppercase;
+}
