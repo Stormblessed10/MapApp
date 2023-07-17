@@ -1,0 +1,29 @@
+.sidebar {
+    flex-basis: 56rem;
+    background-color: var(--color-tertiary);
+    padding: 3rem 5rem 3.5rem 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar ul {
+    display: flex;
+    list-style-type: none;
+    background-color: #42484d;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.sidebar a:link, a:visited {
+    display: block;
+    text-decoration: none;
+    color: var(--color-secondary);
+    padding: 0.5rem 2rem;
+    font-weight: 600;
+}
+
+.sidebar :global(.active) {
+    background-color: #242a2e;
+}
