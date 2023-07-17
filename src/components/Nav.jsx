@@ -8,7 +8,7 @@ export default function Nav() {
         <ul>
             <li><NavLink to="/price">Price</NavLink></li>
             <li><NavLink to="/product">Product</NavLink></li>
-            <li><NavLink className="btn-link" to="/">LOGIN</NavLink></li>
+            <li><NavLink className="btn-link" to="/app">LOGIN</NavLink></li>
         </ul>
     </nav>
 }
