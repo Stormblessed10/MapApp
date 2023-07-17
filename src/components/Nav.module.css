@@ -20,3 +20,7 @@
     text-decoration: none;
     text-transform: uppercase;
 }
+
+.nav ul :global(.active) { 
+    color: var(--color-primary);
+}
