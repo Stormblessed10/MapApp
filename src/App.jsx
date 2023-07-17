@@ -5,6 +5,7 @@ import Price from "./pages/Price";
 import PageNotFound from "./pages/PageNotFount";
 import AppLayout from "./pages/AppLayout";
 import "./index.css";
+import Login from "./pages/Login";
 
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
       <Route path="/" element={<Homepage/>}></Route>
       <Route path="product" element={<Product/>}></Route>
       <Route path="price" element={<Price/>}></Route>
+      <Route path="login" element={<Login/>}></Route>
       <Route path="app" element={<AppLayout/>}></Route>
       <Route path="*" element={<PageNotFound/>}></Route>
   </Routes>
