@@ -1,0 +1,42 @@
+.cities {
+    list-style-type: none;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    width: 100%;
+}
+
+
+.cities a:link, a:visited {
+    display: flex;
+    gap: 1.6rem;
+    align-items: center;
+    
+    background-color: #42484d;
+    border-radius: 8px;
+    border-left: 6px solid var(--color-primary);
+    padding: 1rem 2rem;
+    text-decoration: none;
+}
+
+.cities h3 {
+    flex-grow: 1;
+    font-weight: 500;
+}
+
+.cities button {
+    border-radius: 50%;
+    color: var(--color-secondary);
+    background-color: transparent;
+    font-size: 3rem;
+    transition: all 0.5s;
+}
+
+.cities button:hover {
+    color: var(--color-primary);
+    transform: rotate(180deg);
+}
