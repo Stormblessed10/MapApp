@@ -1,8 +1,10 @@
 import { useState } from "react"
 import styles from "./Form.module.css";
 import Button from "./Button";
+import { useNavigate } from "react-router";
 
 export default function Form() {
+    const navigate = useNavigate();
     const [cityName, setCityName] = useState("");
     const [country, setCountry] = useState("");
     const [visitDate, setVisitDate] = useState("");
@@ -22,6 +24,12 @@ export default function Form() {
                 <label>Some notes about your trip</label>
                 <textarea rows={3} onChange={(e) => setNote(e.target.value)} value={note}/>
             </div>
-            <div><Button type="primary">ADD</Button></div>
+            <div className={styles.btns}>
+                <Button type="primary">ADD</Button>
+                <Button onClick={(e) => {
+                    e.preventDefault();
+                    navigate(-1);
+                }} type="back">&larr; BACK</Button>
+            </div>
         </form> 
 }
