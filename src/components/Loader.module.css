@@ -1,0 +1,22 @@
+.loader {
+    color: var(--color-secondary);
+    font-size: 3rem;
+    font-weight: 500;
+    animation: load 0.5s steps(4) infinite;
+}
+
+@keyframes load {
+    0% {
+        clip-path: inset(0 1.5rem 0 0);
+    }
+    33% {
+        clip-path: inset(0 1rem 0 0);
+    }
+    66% {
+        clip-path: inset(0 0.6rem 0 0);
+    }
+    100% {
+        clip-path: inset(0 0 0 0);
+    }
+
+}
