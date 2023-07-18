@@ -21,11 +21,6 @@ body {
     font-family: sans-serif;
 }
 
-button {
-    cursor: pointer;
-    border: none;
-}
-
 .btn, .btn:link, .btn:visited {
     font-size: 1.8rem;
     text-transform: uppercase;
