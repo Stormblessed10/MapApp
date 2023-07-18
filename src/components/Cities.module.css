@@ -16,7 +16,7 @@
     gap: 1.6rem;
     align-items: center;
     
-    background-color: #42484d;
+    background-color: var(--color-dark-1);;
     border-radius: 8px;
     border-left: 6px solid var(--color-primary);
     padding: 1rem 2rem;

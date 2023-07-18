@@ -1,7 +1,9 @@
 :root {
     --color-primary: #00c46a;
     --color-secondary: #d6dee0;
-    --color-tertiary: #2d3439;
+    --color-dark-1: #42484d;
+    --color-dark-2: #2d3439;
+    --color-dark-3: #242a2e;
 }
 
 * {
@@ -29,7 +31,7 @@ button {
     text-transform: uppercase;
     font-weight: 500;
     background-color: var(--color-primary);
-    color: var(--color-tertiary);
+    color: var(--color-dark-2);
     padding: 1.2rem 2rem;
     text-decoration: none;
     border-radius: 12px;

@@ -16,7 +16,7 @@
 
     padding: 1rem;
     color: var(--color-secondary);
-    background-color: #42484d;
+    background-color: var(--color-dark-1);;
     border-radius: 8px;
     border-left: 6px solid var(--color-primary);
 }
