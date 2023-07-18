@@ -1,9 +1,12 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Cities.module.css";
 import Loader from "./Loader";
+import Message from "./Message";
 
 export default function Cities({ isLoading, cityList }) {
     if (isLoading) return <Loader/>
+
+    if (!cityList.length) return <Message message="You either didn't visit any city, or didn't mark it. Fix it."/>
 
     function formatedDate(date) {
         return new Intl.DateTimeFormat("en", {
