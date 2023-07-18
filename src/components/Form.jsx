@@ -1,5 +1,6 @@
 import { useState } from "react"
 import styles from "./Form.module.css";
+import Button from "./Button";
 
 export default function Form() {
     const [cityName, setCityName] = useState("");
@@ -21,6 +22,6 @@ export default function Form() {
                 <label>Some notes about your trip</label>
                 <textarea rows={3} onChange={(e) => setNote(e.target.value)} value={note}/>
             </div>
-            <button className="btn">ADD</button>
+            <div><Button type="primary">ADD</Button></div>
         </form> 
 }

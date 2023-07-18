@@ -16,7 +16,7 @@
     margin: 8rem auto;
 }
 
-.login div {
+.login div:not(:last-child) {
     display: flex;
     flex-direction: column;
     gap: 1rem;

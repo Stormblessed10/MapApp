@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Nav from "../components/Nav";
 import styles from "./Login.module.css";
+import Button from "../components/Button";
 
 export default function Login() {
     const [email, setEmail] = useState("dyeus@something.pater");
@@ -17,7 +18,7 @@ export default function Login() {
                 <label>Password</label>
                 <input type="password" onChange={(e) => setPassword(e.target.value)} value={password}/>
             </div>
-            <button className="btn">Login</button>
+            <div><Button type="primary">Add</Button></div>
         </form>
     </main> 
 }

@@ -9,7 +9,7 @@
     width: 48rem;
 }
 
-.form div {
+.form div:not(:last-child) {
     display: flex;
     flex-direction: column;
     gap: 1rem;
