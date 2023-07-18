@@ -1,0 +1,32 @@
+.countries {
+    display: grid;
+    gap: 1.6rem;
+    grid-template-columns: 1fr 1fr;
+
+    width: 100%;
+    list-style-type: none;
+}
+
+.countries li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
+    padding: 1rem;
+    color: var(--color-secondary);
+    background-color: #42484d;
+    border-radius: 8px;
+    border-left: 6px solid var(--color-primary);
+}
+
+.countries .abbrev {
+    font-size: 3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.countries .name {
+    font-size: 2rem;
+}
