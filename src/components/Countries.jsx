@@ -13,7 +13,6 @@ export default function Countries({ isLoading, cityList }) {
         if (!acc.map(el => el.country).includes(cur.country)) return [...acc, {country: cur.country, emoji: cur.emoji, id: cur.id}];
         return acc;
     }, []);
-    console.log(countries);
 
     return <ul className={styles.countries}>
         {countries.map(country => <li key={country.id}><span className={styles.abbrev}>{country.emoji}</span><span className={styles.name}>{country.country}</span></li>)}
