@@ -3,6 +3,7 @@
     font-size: 3rem;
     font-weight: 500;
     animation: load 0.5s steps(4) infinite;
+    margin-top: 10rem;
 }
 
 @keyframes load {
