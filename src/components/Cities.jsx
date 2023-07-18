@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import styles from "./Cities.module.css";
 import Loader from "./Loader";
 import Message from "./Message";
@@ -18,6 +18,6 @@ export default function Cities({ isLoading, cityList }) {
 
     return <ul className={styles.cities}>
         {cityList.map((city) => {
-        return <li key={city.id}><NavLink to="/"><span>{city.emoji}</span><h3>{city.cityName}</h3><time>({formatedDate(city.date)})</time><button>×</button></NavLink></li>
+        return <li key={city.id}><Link to={`${city.id}`}><span>{city.emoji}</span><h3>{city.cityName}</h3><time>({formatedDate(city.date)})</time><button>×</button></Link></li>
         })} </ul>
 }
