@@ -4,7 +4,7 @@ const URL = "http://localhost:9000/cities";
 
 const CitiesContext = createContext();
 
-function CitiesProvider({ children }) {
+export function CitiesProvider({ children }) {
 
     const [isLoading, setIsLoading] = useState(false);
     const [cityList, setCityList] = useState([]);
@@ -23,4 +23,6 @@ function CitiesProvider({ children }) {
       }
       getData();
   }, []);
+
+  return <CitiesContext.Provider value={{isLoading, cityList}}>{children}</CitiesContext.Provider>
 }
