@@ -12,26 +12,7 @@ import Countries from "./components/Countries";
 import City from "./components/City";
 import Form from "./components/Form";
 
-const URL = "http://localhost:9000/cities";
-
 export default function App() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [cityList, setCityList] = useState([]);
-
-  useEffect(() => {
-    async function getData() {
-        try {
-            setIsLoading(true);
-            const res = await fetch(URL);
-            const data = await res.json();
-            setCityList(data);
-            setIsLoading(false);
-        } catch(err) {
-            console.error(err);
-        }
-    }
-    getData();
-}, []);
 
   return <BrowserRouter>
   <Routes>
