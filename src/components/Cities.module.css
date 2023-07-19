@@ -8,6 +8,7 @@
     gap: 1.5rem;
 
     width: 100%;
+    padding-right: 1rem;
 }
 
 
@@ -41,4 +42,9 @@
 .cities button:hover {
     color: var(--color-primary);
     transform: rotate(180deg);
+}
+
+.cities--active a {
+    border: 2px solid var(--color-primary);
+    border-left: 6px solid var(--color-primary);
 }
