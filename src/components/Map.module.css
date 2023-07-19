@@ -1,6 +1,20 @@
-.map {
+.map-container {
     flex: 1;
     height: 100%;
     background-color: var(--color-dark--2);
     position: relative;
+}
+
+.map {
+    height: 100%;
+}
+
+.map :global(.leaflet-popup-content-wrapper) {
+    color: var(--color-secondary);
+    font-size: 1.4rem;
+    background-color: var(--color-primary);
+}
+
+.map :global(.leaflet-popup-tip) {
+    background-color: var(--color-primary);
 }
