@@ -1,8 +1,11 @@
+import { useCities } from "../context/CitiesContext";
 import styles from "./Countries.module.css";
 import Loader from "./Loader";
 import Message from "./Message";
 
-export default function Countries({ isLoading, cityList }) {
+export default function Countries() {
+    const {isLoading, cityList} = useCities();
+    
     if (isLoading) return <Loader/>;
 
     if (!cityList.length) {
