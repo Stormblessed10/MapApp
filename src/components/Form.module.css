@@ -9,18 +9,18 @@
     width: 48rem;
 }
 
-.form div:not(.btns) {
+.form-wrapper {
     display: flex;
     flex-direction: column;
     gap: 1rem;
 }
 
-.form label {
+.form-wrapper label {
     color: var(--color-secondary);
     font-weight: 700;
 }
 
-.form input, textarea {
+.form-wrapper input, textarea {
     width: 100%;
     padding: 0.8rem 1.2rem;
     font-size: 1.6rem;
@@ -30,11 +30,11 @@
     transition: all 0.2s;
 }
 
-.form textarea {
+.form-wrapper textarea {
     resize: vertical;
 }
 
-.form div:first-child {
+.form-wrapper:first-child {
     position: relative;
 
     & input {
@@ -42,7 +42,7 @@
     }
 }
 
-.form div span {
+.form-wrapper .country {
     color: #fff;
     position: absolute;
     right: 1rem;
