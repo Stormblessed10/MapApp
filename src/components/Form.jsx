@@ -5,6 +5,8 @@ import BackButton from "./BackButton";
 import { useUrlPosition } from "../Hooks/useUrlPosition";
 import Message from "./Message";
 import Loader from "./Loader";
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css"
 
 const URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
@@ -40,6 +42,7 @@ export default function Form() {
     const [{cityName, country, visitDate, note, isLoadingGeo, error}, dispatch] = useReducer(reducer, initState);
     const {lat, lng} = useUrlPosition();
 
+
     useEffect(() => {
         async function fetching() {
             try {
@@ -66,16 +69,16 @@ export default function Form() {
     if (error) return <Message message={error}/>;
 
     return <form className={styles.form}>
-            <div>
+            <div className={styles["form-wrapper"]}>
                 <label>City name</label>
                 <input type="text" onChange={(e) => dispatch({type: "setCityName", payload: e.target.value})} value={cityName}/>
-                <span>{country}</span>
+                <span className={styles.country}>{country}</span>
             </div>
-            <div>
+            <div className={styles["form-wrapper"]}>
                 <label>Visit date</label>
-                <input type="text" onChange={(e) => dispatch({type: "setVisitDate", payload: e.target.value})} value={visitDate}/>
+                <DatePicker selected={visitDate} onChange={date => dispatch({type: "setVisitDate", payload: date})} dateFormat="dd/MM/yyyy"/>
             </div>
-            <div>
+            <div className={styles["form-wrapper"]}>
                 <label>Some notes about your visit to {cityName}</label>
                 <textarea rows={3} onChange={(e) => dispatch({type: "setNote", payload: e.target.value})} value={note}/>
             </div>
