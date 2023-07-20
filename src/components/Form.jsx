@@ -6,7 +6,7 @@ import BackButton from "./BackButton";
 export default function Form() {
     const [cityName, setCityName] = useState("");
     const [country, setCountry] = useState("");
-    const [visitDate, setVisitDate] = useState("");
+    const [visitDate, setVisitDate] = useState(new Date());
     const [note, setNote] = useState("");
 
     return <form className={styles.form}>
