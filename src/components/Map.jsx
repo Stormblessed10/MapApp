@@ -8,6 +8,8 @@ import 'leaflet/dist/leaflet.css';
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { useCities } from "../context/CitiesContext";
+import { useGeolocation } from "../Hooks/useGeolocation";
+import Button from "./Button"; 
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -19,6 +21,7 @@ export default function Map() {
     const [mapPosition, setMapPosition] = useState([40, 0]);
     const [searchParams] = useSearchParams();
     const {cityList} = useCities();
+    const {isLoading: isLoadingPosition, position: geolocationPosition, getPosition} = useGeolocation();
 
     const lng = searchParams.get("lng");
     const lat = searchParams.get("lat");
@@ -26,8 +29,13 @@ export default function Map() {
     useEffect(() => {
         if(lng && lat) setMapPosition([lat, lng]);
     }, [lng, lat]);
+
+    useEffect(() => {
+        if (geolocationPosition) setMapPosition(geolocationPosition);
+    }, [geolocationPosition]);
     
     return <section className={styles["map-container"]}>
+        {!geolocationPosition && <Button onClick={getPosition} type="position">{isLoadingPosition ? "Loading..." : "Get geolocation"}</Button>}
         <MapContainer className={styles.map} center={mapPosition} zoom={8} scrollWheelZoom={false}>
             <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
