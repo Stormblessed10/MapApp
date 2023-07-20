@@ -1,0 +1,26 @@
+{
+  "cities": [
+    {
+      "cityName": "Paracuellos de Jarama",
+      "country": "Spain",
+      "date": "2023-07-20T16:07:15.671Z",
+      "notes": "Vamos",
+      "position": {
+        "lat": "40.51379915504413",
+        "lng": "-3.5156250000000004"
+      },
+      "id": 1
+    },
+    {
+      "cityName": "Arnavutkoy",
+      "country": "Turkiye",
+      "date": "2023-07-20T16:08:08.583Z",
+      "notes": "",
+      "position": {
+        "lat": "41.178653972331674",
+        "lng": "28.7841796875"
+      },
+      "id": 2
+    }
+  ]
+}
