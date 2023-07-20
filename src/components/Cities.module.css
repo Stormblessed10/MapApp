@@ -8,6 +8,8 @@
     gap: 1.5rem;
 
     width: 100%;
+    min-height: 65vh;
+    padding: 1rem 0;
     padding-right: 1rem;
 }
 

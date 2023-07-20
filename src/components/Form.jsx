@@ -51,7 +51,7 @@ export default function Form() {
 
         if (!cityName || !date) return;
 
-        const newCity = {cityName, country, date, notes, position: { lat, lng }, id: crypto.randomUUID};
+        const newCity = {cityName, country, date, notes, position: { lat, lng }};
         addCity(newCity);
         navigate("/app");
     }
