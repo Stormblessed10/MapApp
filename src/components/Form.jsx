@@ -7,14 +7,15 @@ import Message from "./Message";
 import Loader from "./Loader";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
+import { useCities } from "../context/CitiesContext";
 
 const URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
 const initState = {
     cityName: "",
     country: "",
-    visitDate: new Date(),
-    note: "",
+    date: new Date(),
+    notes: "",
     isLoadingGeo: false,
     error: null
 };
@@ -26,9 +27,9 @@ function reducer(state, action) {
         case "setCountry":
             return {...state, country: action.payload};
         case "setVisitDate":
-            return {...state, visitDate: action.payload};
+            return {...state, date: action.payload};
         case "setNote":
-            return {...state, note: action.payload};
+            return {...state, notes: action.payload};
         case "setIsLoadingGeo":
             return {...state, isLoadingGeo: !state.isLoadingGeo};
         case "setError":
@@ -39,9 +40,18 @@ function reducer(state, action) {
 }
 
 export default function Form() {
-    const [{cityName, country, visitDate, note, isLoadingGeo, error}, dispatch] = useReducer(reducer, initState);
+    const [{cityName, country, date, notes, isLoadingGeo, error}, dispatch] = useReducer(reducer, initState);
     const {lat, lng} = useUrlPosition();
+    const { addCity } = useCities();
 
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        if (!cityName || !date) return;
+
+        const newCity = {cityName, country, date, notes, position: { lat, lng }, id: crypto.randomUUID};
+        addCity(newCity);
+    }
 
     useEffect(() => {
         async function fetching() {
@@ -68,7 +78,7 @@ export default function Form() {
 
     if (error) return <Message message={error}/>;
 
-    return <form className={styles.form}>
+    return <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles["form-wrapper"]}>
                 <label>City name</label>
                 <input type="text" onChange={(e) => dispatch({type: "setCityName", payload: e.target.value})} value={cityName}/>
@@ -76,11 +86,11 @@ export default function Form() {
             </div>
             <div className={styles["form-wrapper"]}>
                 <label>Visit date</label>
-                <DatePicker selected={visitDate} onChange={date => dispatch({type: "setVisitDate", payload: date})} dateFormat="dd/MM/yyyy"/>
+                <DatePicker selected={date} onChange={date => dispatch({type: "setVisitDate", payload: date})} dateFormat="dd/MM/yyyy"/>
             </div>
             <div className={styles["form-wrapper"]}>
-                <label>Some notes about your visit to {cityName}</label>
-                <textarea rows={3} onChange={(e) => dispatch({type: "setNote", payload: e.target.value})} value={note}/>
+                <label>Some notess about your visit to {cityName}</label>
+                <textarea rows={3} onChange={(e) => dispatch({type: "setNote", payload: e.target.value})} value={notes}/>
             </div>
             <div className={styles.btns}>
                 <Button type="primary">ADD</Button>
