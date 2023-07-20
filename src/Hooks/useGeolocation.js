@@ -6,7 +6,6 @@ export function useGeolocation(defalult = null) {
     const [error, setError] = useState(null);
 
     function getPosition() {
-        console.log('works')
         if (!navigator.geolocation) return setError("Error");
 
         setIsLoading(true);
