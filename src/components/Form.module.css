@@ -38,7 +38,7 @@
     position: relative;
 
     & input {
-        padding-right: 6rem;
+        padding-right: 10rem;
     }
 }
 
@@ -48,7 +48,9 @@
     right: 1rem;
     bottom: 1.7rem;
     transform: translateY(50%);
-    font-size: 2.8rem;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    font-weight: 700;
 }
 form .btns {
     display: flex;

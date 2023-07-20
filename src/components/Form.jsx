@@ -1,8 +1,10 @@
-import { useEffect, useReducer, useState } from "react"
+import { useEffect, useReducer } from "react"
 import styles from "./Form.module.css";
 import Button from "./Button";
 import BackButton from "./BackButton";
 import { useUrlPosition } from "../Hooks/useUrlPosition";
+import Message from "./Message";
+import Loader from "./Loader";
 
 const URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
@@ -11,25 +13,31 @@ const initState = {
     country: "",
     visitDate: new Date(),
     note: "",
-    isLoadingGeo: false
+    isLoadingGeo: false,
+    error: null
 };
+
 function reducer(state, action) {
     switch(action.type) {
         case "setCityName":
-            return {...state, cityName: action.payload}
+            return {...state, cityName: action.payload};
         case "setCountry":
-            return {...state, country: action.payload}
+            return {...state, country: action.payload};
         case "setVisitDate":
-            return {...state, visitDate: action.payload}
+            return {...state, visitDate: action.payload};
         case "setNote":
-            return {...state, note: action.payload}
+            return {...state, note: action.payload};
         case "setIsLoadingGeo":
-            return {...state, isLoadingGeo: !state.isLoadingGeo}
+            return {...state, isLoadingGeo: !state.isLoadingGeo};
+        case "setError":
+            return {...state, error: action.payload};
+        default:
+            return "Random error"
     }
 }
 
 export default function Form() {
-    const [{cityName, country, visitDate, note, isLoadingGeo}, dispatch] = useReducer(reducer, initState);
+    const [{cityName, country, visitDate, note, isLoadingGeo, error}, dispatch] = useReducer(reducer, initState);
     const {lat, lng} = useUrlPosition();
 
     useEffect(() => {
@@ -38,16 +46,24 @@ export default function Form() {
                 dispatch({type: "setIsLoadingGeo"});
                 const res = await fetch(`${URL}?latitude=${lat}&longitude=${lng}`);
                 const data = await res.json();
+
+                if (!data.countryName) throw new Error('Click on a country')
+                
+                dispatch({type: "setError", payload: null});
                 dispatch({type: "setCityName", payload: data.city || data.locality});
-                dispatch({type: "setIsLoadingGeo", payload: data.countryName});
+                dispatch({type: "setCountry", payload: data.countryName});
             } catch(err) {
-                console.error(err);
+                dispatch({type: "setError", payload: err.message});
             } finally {
                 dispatch({type: "setIsLoadingGeo"});
             }
         }
         fetching();
-    }, [lat, lng])
+    }, [lat, lng]);
+
+    if (isLoadingGeo) return <Loader/>;
+
+    if (error) return <Message message={error}/>;
 
     return <form className={styles.form}>
             <div>
