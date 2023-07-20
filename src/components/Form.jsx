@@ -8,6 +8,7 @@ import Loader from "./Loader";
 import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css"
 import { useCities } from "../context/CitiesContext";
+import { useNavigate } from "react-router";
 
 const URL = "https://api.bigdatacloud.net/data/reverse-geocode-client";
 
@@ -42,7 +43,8 @@ function reducer(state, action) {
 export default function Form() {
     const [{cityName, country, date, notes, isLoadingGeo, error}, dispatch] = useReducer(reducer, initState);
     const {lat, lng} = useUrlPosition();
-    const { addCity } = useCities();
+    const {addCity} = useCities();
+    const navigate = useNavigate();
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -51,6 +53,7 @@ export default function Form() {
 
         const newCity = {cityName, country, date, notes, position: { lat, lng }, id: crypto.randomUUID};
         addCity(newCity);
+        navigate("/app");
     }
 
     useEffect(() => {
