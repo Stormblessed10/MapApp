@@ -21,6 +21,6 @@ export default function Cities() {
 
     return <ul className={styles.cities}>
         {cityList.map((city) => {
-        return <li className={currentCity.id === city.id ? styles["cities--active"] : ''} key={city.id}><Link to={`${city.id}?lat=${city.position.lat}&lng=${city.position.lng}`}><span>{city.emoji}</span><h3>{city.cityName}</h3><time>({formatedDate(city.date)})</time><button>×</button></Link></li>
+        return <li className={currentCity.id === city.id ? styles["cities--active"] : ''} key={city.id}><Link to={`${city.id}?lat=${city.position.lat}&lng=${city.position.lng}`}><h3><span>{city.country}</span>{city.cityName}</h3><time>({formatedDate(city.date)})</time><button>×</button></Link></li>
     })} </ul>
 }

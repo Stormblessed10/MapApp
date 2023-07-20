@@ -27,6 +27,13 @@
 .cities h3 {
     flex-grow: 1;
     font-weight: 500;
+    display: flex;
+    flex-direction: column;
+}
+
+.cities h3 span {
+    font-size: 1rem;
+    text-transform: uppercase;
 }
 
 .cities button {

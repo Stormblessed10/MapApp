@@ -13,11 +13,11 @@ export default function Countries() {
     }
 
     const countries = cityList.reduce((acc, cur) =>{
-        if (!acc.map(el => el.country).includes(cur.country)) return [...acc, {country: cur.country, emoji: cur.emoji, id: cur.id}];
+        if (!acc.map(el => el.country).includes(cur.country)) return [...acc, {country: cur.country, id: cur.id}];
         return acc;
     }, []);
 
     return <ul className={styles.countries}>
-        {countries.map(country => <li key={country.id}><span className={styles.abbrev}>{country.emoji}</span><span className={styles.name}>{country.country}</span></li>)}
+        {countries.map(country => <li key={country.id}><span className={styles.name}>{country.country}</span></li>)}
     </ul>
 }
