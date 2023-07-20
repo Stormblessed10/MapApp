@@ -1,4 +1,3 @@
-import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./Map.module.css";
 import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import { useEffect, useState } from "react";
@@ -10,6 +9,7 @@ import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import { useCities } from "../context/CitiesContext";
 import { useGeolocation } from "../Hooks/useGeolocation";
 import Button from "./Button"; 
+import { useUrlPosition } from "../Hooks/useUrlPosition";
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -19,12 +19,9 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 export default function Map() {
     const [mapPosition, setMapPosition] = useState([40, 0]);
-    const [searchParams] = useSearchParams();
+    const {lng, lat} = useUrlPosition();
     const {cityList} = useCities();
     const {isLoading: isLoadingPosition, position: geolocationPosition, getPosition} = useGeolocation();
-
-    const lng = searchParams.get("lng");
-    const lat = searchParams.get("lat");
 
     useEffect(() => {
         if(lng && lat) setMapPosition([lat, lng]);
