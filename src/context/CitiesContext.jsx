@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 
-const URL = "http://localhost:9000";
+const URL = "http://localhost:8000";
 
 const CitiesContext = createContext();
 
@@ -37,7 +37,38 @@ export function CitiesProvider({ children }) {
     }
   }
 
-  return <CitiesContext.Provider value={{isLoading, cityList, currentCity, getCity}}>{children}</CitiesContext.Provider>
+  async function addCity(newCity) {
+    try {
+        setIsLoading(true);
+        const res = await fetch(`${URL}/cities`, {
+            method: "POST",
+            body: JSON.stringify(newCity),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+        const data = await res.json();
+        setCityList((cities) => [...cities, data]);
+        setIsLoading(false);
+    } catch(err) {
+        console.error(err);
+    }
+  }
+
+  async function deleteCity(id) {
+    try {
+        setIsLoading(true);
+        await fetch(`${URL}/cities/${id}`, {
+            method: "DELETE",
+        });
+        setCityList((cities) => cities.filter(city => city.id !== id));
+        setIsLoading(false);
+    } catch(err) {
+        console.error(err);
+    }
+  }
+
+  return <CitiesContext.Provider value={{addCity, isLoading, cityList, currentCity, getCity, deleteCity}}>{children}</CitiesContext.Provider>
 }
 
 export function useCities() {

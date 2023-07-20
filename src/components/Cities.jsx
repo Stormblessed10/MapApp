@@ -5,11 +5,16 @@ import Message from "./Message";
 import { useCities } from "../context/CitiesContext";
 
 export default function Cities() {
-    const {isLoading, cityList, currentCity} = useCities();
+    const {isLoading, cityList, currentCity, deleteCity} = useCities();
 
     if (isLoading) return <Loader/>
 
     if (!cityList.length) return <Message message="You either didn't visit any city, or didn't mark it. Fix it."/>
+
+    function handleClick(e, id) {
+        e.preventDefault();
+        deleteCity(id);
+    }
 
     function formatedDate(date) {
         return new Intl.DateTimeFormat("en", {
@@ -21,6 +26,6 @@ export default function Cities() {
 
     return <ul className={styles.cities}>
         {cityList.map((city) => {
-        return <li className={currentCity.id === city.id ? styles["cities--active"] : ''} key={city.id}><Link to={`${city.id}?lat=${city.position.lat}&lng=${city.position.lng}`}><h3><span>{city.country}</span>{city.cityName}</h3><time>({formatedDate(city.date)})</time><button>×</button></Link></li>
+        return <li className={currentCity.id === city.id ? styles["cities--active"] : ''} key={city.id}><Link to={`${city.id}?lat=${city.position.lat}&lng=${city.position.lng}`}><h3><span>{city.country}</span>{city.cityName}</h3><time>({formatedDate(city.date)})</time><button onClick={(e) => handleClick(e, city.id)}>×</button></Link></li>
     })} </ul>
 }
