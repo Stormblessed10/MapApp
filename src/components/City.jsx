@@ -26,7 +26,11 @@ export default function City() {
     return <div className={styles.city}>
         <div className={styles.cityItem}>
             <h3>CITY NAME</h3>
-            <p><span>{currentCity.emoji}</span>{currentCity.cityName}</p>
+            <p>{currentCity.cityName}</p>
+        </div>
+        <div className={styles.cityItem}>
+            <h3>COUNTRY</h3>
+            <p>{currentCity.country}</p>
         </div>
         <div className={styles.cityItem}>
             <h3>YOU WENT TO</h3>
@@ -35,10 +39,6 @@ export default function City() {
         <div className={styles.cityItem}>
             <h3>YOUR NOTE</h3>
             <p>{currentCity.notes}</p>
-        </div>
-        <div className={styles.cityItem}>
-            <h3>LEARN MORE</h3>
-            <a href=""></a>
         </div>
         <BackButton/>
     </div>
