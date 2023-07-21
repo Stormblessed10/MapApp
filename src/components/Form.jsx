@@ -18,25 +18,25 @@ const initState = {
     date: new Date(),
     notes: "",
     isLoadingGeo: false,
-    error: null
+    error: ""
 };
 
 function reducer(state, action) {
     switch(action.type) {
-        case "setCityName":
+        case "loading":
+            return {...state, isLoadingGeo: true, error: ""};
+        case "dataReceived":
+            return {...state, cityName: action.payload.city || action.payload.locality, country: action.payload.countryName, isLoadingGeo: false};
+        case "cityChanged":
             return {...state, cityName: action.payload};
-        case "setCountry":
-            return {...state, country: action.payload};
-        case "setVisitDate":
+        case "dateChanged":
             return {...state, date: action.payload};
-        case "setNote":
+        case "notesChanged":
             return {...state, notes: action.payload};
-        case "setIsLoadingGeo":
-            return {...state, isLoadingGeo: !state.isLoadingGeo};
-        case "setError":
-            return {...state, error: action.payload};
+        case "rejected":
+            return {...state, error: action.payload, isLoadingGeo: false};
         default:
-            return "Random error"
+            throw new Error("Random error");
     }
 }
 
@@ -58,22 +58,19 @@ export default function Form() {
 
     useEffect(() => {
         async function fetching() {
+            dispatch({type: "loading"});
             try {
-                dispatch({type: "setIsLoadingGeo"});
                 const res = await fetch(`${URL}?latitude=${lat}&longitude=${lng}`);
                 const data = await res.json();
 
                 if (!data.countryName) throw new Error('Click on a country')
                 
-                dispatch({type: "setError", payload: null});
-                dispatch({type: "setCityName", payload: data.city || data.locality});
-                dispatch({type: "setCountry", payload: data.countryName});
+                dispatch({type: "dataFetched", payload: data});
             } catch(err) {
-                dispatch({type: "setError", payload: err.message});
-            } finally {
-                dispatch({type: "setIsLoadingGeo"});
+                dispatch({type: "rejected", payload: err.message});
             }
         }
+
         fetching();
     }, [lat, lng]);
 
@@ -84,16 +81,16 @@ export default function Form() {
     return <form className={styles.form} onSubmit={handleSubmit}>
             <div className={styles["form-wrapper"]}>
                 <label>City name</label>
-                <input type="text" onChange={(e) => dispatch({type: "setCityName", payload: e.target.value})} value={cityName}/>
+                <input type="text" onChange={(e) => dispatch({type: "cityChanged", payload: e.target.value})} value={cityName}/>
                 <span className={styles.country}>{country}</span>
             </div>
             <div className={styles["form-wrapper"]}>
                 <label>Visit date</label>
-                <DatePicker selected={date} onChange={date => dispatch({type: "setVisitDate", payload: date})} dateFormat="dd/MM/yyyy"/>
+                <DatePicker selected={date} onChange={date => dispatch({type: "dateChanged", payload: date})} dateFormat="dd/MM/yyyy"/>
             </div>
             <div className={styles["form-wrapper"]}>
                 <label>Some notess about your visit to {cityName}</label>
-                <textarea rows={3} onChange={(e) => dispatch({type: "setNote", payload: e.target.value})} value={notes}/>
+                <textarea rows={3} onChange={(e) => dispatch({type: "notesChanged", payload: e.target.value})} value={notes}/>
             </div>
             <div className={styles.btns}>
                 <Button type="primary">ADD</Button>
