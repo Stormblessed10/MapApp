@@ -1,0 +1,7 @@
+.loaderPage {
+    background-color: var(--color-dark-1);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
